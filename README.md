@@ -1,98 +1,119 @@
 # Cloud-Based Digital Twin System for Industrial Equipment
 
-A cloud computing mini project. It keeps a virtual copy (digital twin) of industrial machines and shows their simulated status and monitoring data on a web dashboard.
+A cloud-deployed web application that simulates industrial equipment, monitors machine health, visualizes sensor readings, and generates alerts through a real-time digital twin dashboard.
 
-## Architecture
+## 🌐 Live Demo
 
-```
-Simulated sensors  ->  Node.js + Express API (cloud)  ->  Web dashboard
-(simulator.js)         REST endpoints, JSON               Plain HTML/CSS/JS  or  React
-```
+**[Launch the Digital Twin Dashboard](https://cloud-digital-twin-uyrz.onrender.com)**
 
-- The backend creates 5 digital twins (press, CNC, conveyor, compressor, pump).
-- Every 2 seconds it generates new temperature, vibration, pressure, rpm, power and health values.
-- Faults build up randomly, so machines move between running, warning and critical, and raise alerts.
-- The dashboard polls the API every 2 seconds and draws live charts.
-- Operators can start, stop, or run maintenance on a machine.
+## 📂 GitHub Repository
 
-## Folder structure
+**[View Source Code on GitHub](https://github.com/muthukoornandini/cloud-digital-twin)**
 
-```
-digital-twin/
-├── backend/            Node.js + Express API and simulator
-├── frontend-vanilla/   HTML, CSS, JavaScript dashboard (served by the backend)
-├── frontend-react/     Same dashboard built with React + Vite
-├── Dockerfile          For cloud deployment
-└── README.md
-```
+## 📌 Project Overview
 
-## Run it (option 1: HTML/CSS/JS)
+The Cloud-Based Digital Twin System creates virtual representations of industrial machines using simulated sensor data. It helps users monitor equipment conditions, observe performance metrics, identify potential faults, and manage machine operations through a web-based dashboard.
+
+The application is deployed on Render, making the dashboard accessible online.
+
+## ✨ Key Features
+
+- **Digital Twin Simulation:** Simulates five industrial machines.
+- **Live Sensor Monitoring:** Displays temperature, vibration, pressure, RPM, power consumption, and machine health.
+- **Machine Status Tracking:** Shows machine operating conditions, including running, warning, critical, and stopped states.
+- **Fault and Alert Monitoring:** Generates simulated alerts when machine conditions change.
+- **Interactive Controls:** Allows users to stop machines and initiate maintenance actions.
+- **Performance Visualization:** Displays machine readings and historical data through dashboard charts.
+- **Cloud Deployment:** Provides online access through Render.
+
+## 🏭 Machines Simulated
+
+1. Hydraulic Press
+2. CNC Milling Centre
+3. Belt Conveyor
+4. Air Compressor
+5. Coolant Pump
+
+## 🛠️ Technologies Used
+
+| Component | Technology |
+|---|---|
+| Backend | Node.js, Express.js |
+| Frontend | HTML, CSS, JavaScript |
+| Data Visualization | Dashboard charts |
+| Simulation | JavaScript-based sensor simulator |
+| Containerization | Docker |
+| Cloud Deployment | Render |
+| Version Control | Git and GitHub |
+
+## ⚙️ How It Works
+
+1. The simulator generates sensor readings for five industrial machines.
+2. The backend processes and provides machine data through the web application.
+3. The dashboard displays sensor readings, machine health, and operating status.
+4. The system generates simulated alerts when machine conditions change.
+5. Users can interact with machine controls and observe status updates.
+
+## 📊 Dashboard Output
+
+The dashboard provides:
+
+- Total number of monitored machines
+- Running, warning, critical, and stopped machine counts
+- Average machine health
+- Total power consumption
+- Individual machine sensor readings
+- Historical charts and recent alerts
+
+*Sensor values and machine status can change because the project uses simulated data.*
+
+## 🚀 Run Locally
+
+### Prerequisites
+
+- Node.js and npm
+- Git
+
+### Installation
 
 ```bash
+git clone https://github.com/muthukoornandini/cloud-digital-twin.git
+cd cloud-digital-twin
 cd backend
 npm install
 npm start
 ```
 
-Open http://localhost:5000
+Open the application in your browser:
 
-## Run it (option 2: React)
-
-Terminal 1:
-```bash
-cd backend
-npm install
-npm start
+```text
+http://localhost:5000
 ```
 
-Terminal 2:
-```bash
-cd frontend-react
-npm install
-npm run dev
-```
+## ☁️ Cloud Deployment
 
-Open http://localhost:5173 (Vite forwards /api calls to port 5000).
+The project uses Docker for packaging and is deployed on Render.
 
-## API endpoints
+**Live application:** https://cloud-digital-twin-uyrz.onrender.com
 
-| Method | Endpoint                         | Description                              |
-|--------|----------------------------------|------------------------------------------|
-| GET    | /api/health                      | Server check                             |
-| GET    | /api/summary                     | Counts, average health, total power      |
-| GET    | /api/equipment                   | All machines with current status         |
-| GET    | /api/equipment/:id               | One twin with metrics and history        |
-| POST   | /api/equipment/:id/command       | Body: `{ "action": "start" \| "stop" \| "maintenance" }` |
-| GET    | /api/alerts                      | Latest alerts                            |
-| GET    | /api/limits                      | Warning and critical thresholds          |
+Note: The free hosting service may take some time to start after a period of inactivity.
 
-## Deploy to the cloud
+## 🔮 Future Enhancements
 
-**Render / Railway (easiest):** push this folder to GitHub, create a new Web Service, set the root to this folder, build command `cd backend && npm install`, start command `node backend/server.js`. The HTML/JS dashboard is served from the same URL.
+- Integration with real IoT sensors
+- Predictive maintenance using machine learning
+- Historical data storage and analytics
+- User authentication and role-based access
+- Advanced fault detection and notifications
 
-**Docker (AWS, Azure, GCP):**
-```bash
-docker build -t digital-twin .
-docker run -p 5000:5000 digital-twin
-```
+## 🎯 Project Objective
 
-**React build on separate hosting (Netlify, Vercel, S3):**
-```bash
-cd frontend-react
-VITE_API_URL=https://your-backend-url npm run build
-```
-Upload the `dist` folder.
+To demonstrate how digital twin simulation, sensor monitoring, interactive dashboards, and cloud deployment can be combined to support industrial equipment monitoring and maintenance.
 
-## Cloud computing concepts shown
+---
 
-- Client-server model with a REST API over HTTP
-- Stateless API that any number of dashboards can read
-- Digital twin concept: virtual state mirroring physical equipment
-- Real-time monitoring by polling (could be upgraded to WebSockets or MQTT)
-- Containerised deployment (Docker) and PaaS or IaaS hosting
+**Developed by:** Muthukoornandini
 
-## Possible extensions
+**GitHub:** [@muthukoornandini](https://github.com/muthukoornandini)
 
-- Store history in MongoDB or PostgreSQL instead of memory
-- Replace the simulator with real sensor data over MQTT (AWS IoT Core, Azure IoT Hub)
-- Add login and roles, WebSocket live updates, email alerts
+**Live Demo:** [Cloud-Based Digital Twin System](https://cloud-digital-twin-uyrz.onrender.com)
