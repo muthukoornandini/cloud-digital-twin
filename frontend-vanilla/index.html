@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Digital Twin Monitor – Industrial Equipment</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>Plant Floor Digital Twin</h1>
+      <p class="sub">Live view of simulated equipment, served from the cloud API</p>
+    </div>
+    <div class="conn" id="conn" role="status">Connecting…</div>
+  </header>
+
+  <main>
+    <section class="summary" id="summary" aria-label="Plant summary"></section>
+
+    <div class="layout">
+      <section class="panel list-panel" aria-label="Equipment list">
+        <h2>Equipment</h2>
+        <ul id="equipmentList" class="equipment-list"></ul>
+      </section>
+
+      <section class="panel detail-panel" id="detail" aria-live="polite">
+        <p class="empty">Select a machine to see its digital twin.</p>
+      </section>
+    </div>
+
+    <section class="panel alerts-panel" aria-label="Recent alerts">
+      <h2>Recent alerts</h2>
+      <ul id="alerts" class="alerts"></ul>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
